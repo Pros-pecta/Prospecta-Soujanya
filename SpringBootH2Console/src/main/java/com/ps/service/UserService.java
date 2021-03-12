@@ -6,10 +6,12 @@ import com.ps.model.User;
 
 public interface UserService {
 	 Integer saveUser(User user);
-	 User findByEmail(String email);
+	 User getUserByEmail(String email);
 	 void deleteUser(Integer id);
 	 void updateUser(User u);
-	 boolean isExist(Integer id);
-	 List<User> findAll();
+	 boolean isUserExist(Integer id);
+	 List<User> getUsers();
+	 User getUser(Integer id);
+	 
 
 }

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -17,29 +18,30 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "UserTable")
 public class User {
-	
+
+	public User() {
+		super();
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
-	@NotNull(message = "First Name cannot be null")
-	@NotEmpty
+
+	@NotBlank(message = "First Name cannot be blank")
 	private String firstName;
-	
-	@NotNull(message = "Last Name cannot be null")
-	@NotEmpty
+
+	@NotBlank(message = "Last Name cannot be blank")
 	private String lastName;
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dob;
-	
+
 	@Column(name = "email", unique = true)
-	@Email(message = "Email should be valid")
-	@NotNull(message = "Email cannot be null")
-	@NotEmpty
+	@NotBlank(message = "Email cannot be blank")
+	@Email
 	private String email;
-	
-	private String address;
+
+	//private Address address;
 
 	public Integer getId() {
 		return id;
@@ -81,13 +83,13 @@ public class User {
 		this.email = email;
 	}
 
-	public String getAddress() {
+	/*public Address getAddress() {
 		return address;
 	}
-
-	public void setAddress(String address) {
+	
+	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
-	
+	*/
+
 }

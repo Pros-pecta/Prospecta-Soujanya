@@ -1,4 +1,4 @@
-package com.ps.service;
+package com.ps.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ps.model.User;
 import com.ps.repository.UserRepository;
+import com.ps.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -21,20 +22,20 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public User findByEmail(String email) {
+	public User getUserByEmail(String email) {
 		return userRepo.findByEmail(email);
 	}
 
-	/*	@Override
-		public User finUser(Integer id) {
-			User user = null;
-			Optional<User> opt=userRepo.findById(id);
-			if(opt.isPresent()) {
-				user = opt.get();
-			}
-		    return user;
+	@Override
+	public User getUser(Integer id) {
+		User user = null;
+		Optional<User> opt=userRepo.findById(id);
+		if(opt.isPresent()) {
+			user = opt.get();
 		}
-	*/
+	    return user;
+	}
+	
 	@Override
 	public void deleteUser(Integer id) {
 		userRepo.deleteById(id);
@@ -48,12 +49,12 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public boolean isExist(Integer id) {
+	public boolean isUserExist(Integer id) {
 		return userRepo.existsById(id);
 	}
 	
 	@Override
-	public List<User> findAll() {
+	public List<User> getUsers() {
 		return userRepo.findAll();
 	}
 
